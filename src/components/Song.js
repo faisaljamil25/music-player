@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 // import Paper from "@material-ui/core/Paper";
-import { Grid } from "@material-ui/core";
+import { Grid, Box, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
@@ -14,9 +14,15 @@ const useStyles = makeStyles({
     justifyContent: "center",
     alignItems: "center",
   },
+  songImg: {
+    borderRadius: "50%",
+  },
+  typography: {
+    color: "#323232",
+  },
 });
 
-const Song = () => {
+const Song = ({ currentSong }) => {
   const classes = useStyles();
 
   return (
@@ -29,9 +35,26 @@ const Song = () => {
           alignItems="center"
           direction="column"
         >
-          <Grid item>Image</Grid>
-          <Grid item>Song Name</Grid>
-          <Grid item>Artist</Grid>
+          <Box mt={10} mb={5}>
+            <img
+              src={currentSong.cover}
+              alt={currentSong.name}
+              className={classes.songImg}
+              width="250px"
+            />
+          </Box>
+          <Box mb={2}>
+            {" "}
+            <Typography variant="h5" className={classes.typography}>
+              {currentSong.name}
+            </Typography>
+          </Box>
+          <Box mb={5}>
+            {" "}
+            <Typography variant="subtitle1" className={classes.typography}>
+              {currentSong.artist}
+            </Typography>
+          </Box>
         </Grid>
       </Grid>
     </div>

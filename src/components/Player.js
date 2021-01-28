@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography, Slider, IconButton } from "@material-ui/core";
+import { Grid, Typography, Slider, IconButton, Box } from "@material-ui/core";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 // import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
@@ -8,11 +8,26 @@ import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
 import SkipNextIcon from "@material-ui/icons/SkipNext";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     // minHeight: "60vh",
   },
-});
+  playBtn: {
+    width: "20%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    [theme.breakpoints.up("sm")]: {
+      width: "15%",
+    },
+  },
+  slider: {
+    width: "60%",
+    [theme.breakpoints.up("sm")]: {
+      width: "40%",
+    },
+  },
+}));
 
 const Player = () => {
   const classes = useStyles();
@@ -23,37 +38,37 @@ const Player = () => {
   };
   return (
     <div className={classes.root}>
-      <Grid container spacing={2} justify="center" alignItems="center">
-        <Grid item>
+      <Grid container justify="center" alignItems="center">
+        <Box>
           <Typography>Start</Typography>
-        </Grid>
-        <Grid item xs={4}>
+        </Box>
+        <Box ml={3} mr={3} className={classes.slider}>
           <Slider
             value={value}
             onChange={handleChange}
             aria-labelledby="continuous-slider"
           />
-        </Grid>
-        <Grid item>
+        </Box>
+        <Box>
           <Typography>End</Typography>
-        </Grid>
+        </Box>
       </Grid>
-      <Grid container spacing={2} justify="center" alignItems="center">
-        <Grid item>
+      <Grid container justify="center" alignItems="center">
+        <Box>
           <IconButton color="inherit">
-            <SkipPreviousIcon />
+            <SkipPreviousIcon fontSize="large" />
           </IconButton>
-        </Grid>
-        <Grid item>
+        </Box>
+        <Box className={classes.playBtn}>
           <IconButton color="inherit">
-            <PlayCircleOutlineIcon />
+            <PlayCircleOutlineIcon fontSize="large" />
           </IconButton>
-        </Grid>
-        <Grid item>
+        </Box>
+        <Box>
           <IconButton color="inherit">
-            <SkipNextIcon />
+            <SkipNextIcon fontSize="large" />
           </IconButton>
-        </Grid>
+        </Box>
       </Grid>
     </div>
   );
