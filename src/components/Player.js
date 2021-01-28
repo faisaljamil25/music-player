@@ -4,7 +4,7 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 // import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 // import PauseIcon from "@material-ui/icons/Pause";
-// import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
+import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
 import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
 import SkipNextIcon from "@material-ui/icons/SkipNext";
 
@@ -31,15 +31,17 @@ const useStyles = makeStyles((theme) => ({
 
 const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
   const classes = useStyles();
-  const [value, setValue] = React.useState(30);
+  const [value, setValue] = React.useState(0);
   const [songInfo, setSongInfo] = React.useState({
-    currentTime: null,
-    duration: null,
+    currentTime: 0,
+    duration: 0,
   });
   const audioRef = React.useRef(null);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    audioRef.current.currentTime = newValue;
+    // setSongInfo({ ...songInfo, currentTime: newValue });
   };
 
   const playSongHandler = () => {
@@ -71,6 +73,8 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
         </Box>
         <Box ml={3} mr={3} className={classes.slider}>
           <Slider
+            min={0}
+            max={songInfo.duration}
             value={value}
             onChange={handleChange}
             aria-labelledby="continuous-slider"
@@ -88,7 +92,11 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
         </Box>
         <Box className={classes.playBtn}>
           <IconButton color="inherit" onClick={playSongHandler}>
-            <PlayCircleOutlineIcon fontSize="large" />
+            {isPlaying ? (
+              <PauseCircleOutlineIcon fontSize="large" />
+            ) : (
+              <PlayCircleOutlineIcon fontSize="large" />
+            )}
           </IconButton>
         </Box>
         <Box>
