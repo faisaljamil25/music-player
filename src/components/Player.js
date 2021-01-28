@@ -29,18 +29,45 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Player = () => {
+const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(30);
+  const [songInfo, setSongInfo] = React.useState({
+    currentTime: null,
+    duration: null,
+  });
+  const audioRef = React.useRef(null);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const playSongHandler = () => {
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
+  const timeUpdateHandler = (e) => {
+    const currentTime = e.target.currentTime;
+    const duration = e.target.duration;
+    setSongInfo({ ...songInfo, currentTime: currentTime, duration });
+  };
+
+  const getTime = (time) => {
+    return (
+      Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2)
+    );
+  };
+
   return (
     <div className={classes.root}>
       <Grid container justify="center" alignItems="center">
         <Box>
-          <Typography>Start</Typography>
+          <Typography>{getTime(songInfo.currentTime)}</Typography>
         </Box>
         <Box ml={3} mr={3} className={classes.slider}>
           <Slider
@@ -50,7 +77,7 @@ const Player = () => {
           />
         </Box>
         <Box>
-          <Typography>End</Typography>
+          <Typography>{getTime(songInfo.duration)}</Typography>
         </Box>
       </Grid>
       <Grid container justify="center" alignItems="center">
@@ -60,7 +87,7 @@ const Player = () => {
           </IconButton>
         </Box>
         <Box className={classes.playBtn}>
-          <IconButton color="inherit">
+          <IconButton color="inherit" onClick={playSongHandler}>
             <PlayCircleOutlineIcon fontSize="large" />
           </IconButton>
         </Box>
@@ -70,6 +97,12 @@ const Player = () => {
           </IconButton>
         </Box>
       </Grid>
+      <audio
+        onTimeUpdate={timeUpdateHandler}
+        onLoadedMetadata={timeUpdateHandler}
+        ref={audioRef}
+        src={currentSong.audio}
+      ></audio>
     </div>
   );
 };

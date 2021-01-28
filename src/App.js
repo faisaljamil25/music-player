@@ -9,12 +9,18 @@ import data from "./util";
 function App() {
   const [songs, setSongs] = React.useState(data());
   const [currentSong, setCurrentSong] = React.useState(songs[0]);
+  const [isPlaying, setIsPlaying] = React.useState(false);
+
   return (
     <div className="App">
       <CssBaseline />
       <Grid>
         <Song currentSong={currentSong} />
-        <Player />
+        <Player
+          currentSong={currentSong}
+          isPlaying={isPlaying}
+          setIsPlaying={setIsPlaying}
+        />
       </Grid>
     </div>
   );
