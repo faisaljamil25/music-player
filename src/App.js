@@ -1,10 +1,15 @@
 import React from "react";
+// components
+import Song from "./components/Song";
+import Player from "./components/Player";
+import { Grid } from "@material-ui/core";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Music Player</h1>
-    </div>
+    <Grid className="App">
+      <Song />
+      <Player />
+    </Grid>
   );
 }
 
