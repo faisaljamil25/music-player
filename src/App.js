@@ -2,6 +2,7 @@ import React from "react";
 // components
 import Song from "./components/Song";
 import Player from "./components/Player";
+import Library from "./components/Library";
 import { CssBaseline, Grid } from "@material-ui/core";
 // util
 import data from "./util";
@@ -22,6 +23,7 @@ function App() {
           setIsPlaying={setIsPlaying}
         />
       </Grid>
+      <Library songs={songs} />
     </div>
   );
 }
