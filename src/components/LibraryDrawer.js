@@ -1,8 +1,12 @@
 import React from "react";
 import Drawer from "@material-ui/core/Drawer";
 import Library from "./Library";
+import { makeStyles } from "@material-ui/core/styles";
+import styles from "../styles/index";
 
+const useStyles = makeStyles(styles);
 const LibraryDrawer = ({ songs, open, setOpen }) => {
+  const classes = useStyles();
   const toggleLibrary = (open) => (event) => {
     if (
       event.type === "keydown" &&
