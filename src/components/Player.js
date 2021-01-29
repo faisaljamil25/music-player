@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, Typography, Slider, IconButton, Box } from "@material-ui/core";
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 // import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 // import PauseIcon from "@material-ui/icons/Pause";

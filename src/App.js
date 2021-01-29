@@ -1,20 +1,23 @@
 import React from "react";
 // components
+import Header from "./components/Header";
 import Song from "./components/Song";
 import Player from "./components/Player";
-import Library from "./components/Library";
 import { CssBaseline, Grid } from "@material-ui/core";
 // util
 import data from "./util";
+import LibraryDrawer from "./components/LibraryDrawer";
 
 function App() {
   const [songs, setSongs] = React.useState(data());
   const [currentSong, setCurrentSong] = React.useState(songs[0]);
   const [isPlaying, setIsPlaying] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
   return (
     <div className="App">
       <CssBaseline />
+      <Header setOpen={setOpen} />
       <Grid>
         <Song currentSong={currentSong} />
         <Player
@@ -23,7 +26,7 @@ function App() {
           setIsPlaying={setIsPlaying}
         />
       </Grid>
-      <Library songs={songs} />
+      <LibraryDrawer songs={songs} open={open} setOpen={setOpen} />
     </div>
   );
 }

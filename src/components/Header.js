@@ -24,8 +24,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = () => {
+const Header = ({ setOpen }) => {
   const classes = useStyles();
+
+  const toggleLibrary = (open) => (event) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    setOpen(open);
+  };
 
   return (
     <Box className={classes.root}>
@@ -33,7 +44,9 @@ const Header = () => {
         <Typography variant="h4" className={classes.title}>
           Music
         </Typography>
-        <Button variant="outlined">Library</Button>
+        <Button variant="outlined" onClick={toggleLibrary(true)}>
+          Library
+        </Button>
       </Box>
     </Box>
   );

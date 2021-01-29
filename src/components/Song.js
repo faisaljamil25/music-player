@@ -1,6 +1,5 @@
 import React from "react";
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
-// import Paper from "@material-ui/core/Paper";
+import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Box, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles({
@@ -35,7 +34,7 @@ const Song = ({ currentSong }) => {
           alignItems="center"
           direction="column"
         >
-          <Box mt={10} mb={5}>
+          <Box mt={8} mb={5}>
             <img
               src={currentSong.cover}
               alt={currentSong.name}
