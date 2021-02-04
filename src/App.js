@@ -26,7 +26,12 @@ function App() {
           setIsPlaying={setIsPlaying}
         />
       </Grid>
-      <LibraryDrawer songs={songs} open={open} setOpen={setOpen} />
+      <LibraryDrawer
+        songs={songs}
+        open={open}
+        setOpen={setOpen}
+        setCurrentSong={setCurrentSong}
+      />
     </div>
   );
 }

@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import styles from "../styles/index";
 
 const useStyles = makeStyles(styles);
-const LibraryDrawer = ({ songs, open, setOpen }) => {
+const LibraryDrawer = ({ songs, open, setOpen, setCurrentSong }) => {
   const classes = useStyles();
   const toggleLibrary = (open) => (event) => {
     if (
@@ -22,7 +22,7 @@ const LibraryDrawer = ({ songs, open, setOpen }) => {
     <div>
       <React.Fragment key="left">
         <Drawer anchor="left" open={open} onClose={toggleLibrary(false)}>
-          <Library songs={songs} />
+          <Library songs={songs} setCurrentSong={setCurrentSong} />
         </Drawer>
       </React.Fragment>
     </div>

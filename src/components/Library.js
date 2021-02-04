@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Library = ({ songs }) => {
+const Library = ({ songs, setCurrentSong }) => {
   const classes = useStyles();
 
   return (
@@ -22,7 +22,11 @@ const Library = ({ songs }) => {
       </Typography>
       <Box>
         {songs.map((song) => (
-          <LibrarySong song={song} key={song.id} />
+          <LibrarySong
+            song={song}
+            setCurrentSong={setCurrentSong}
+            key={song.id}
+          />
         ))}
       </Box>
     </Box>

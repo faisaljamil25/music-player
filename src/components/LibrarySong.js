@@ -34,11 +34,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LibrarySong = ({ song }) => {
+const LibrarySong = ({ song, setCurrentSong }) => {
   const classes = useStyles();
+  const handleSong = () => {
+    setCurrentSong(song);
+  };
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} onClick={handleSong}>
       <Box className={classes.songCover}>
         <img
           src={song.cover}
