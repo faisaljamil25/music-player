@@ -5,8 +5,8 @@ import Song from "./components/Song";
 import Player from "./components/Player";
 import LibraryDrawer from "./components/LibraryDrawer";
 import { CssBaseline, Grid } from "@material-ui/core";
-// util
-import data from "./util";
+// data
+import data from "./data";
 
 function App() {
   const [songs, setSongs] = React.useState(data());

@@ -99,14 +99,16 @@ const Player = ({
           <input
             value={songInfo.currentTime}
             type="range"
-            max={songInfo.duration || 0}
+            max={songInfo.duration}
             min={0}
             onChange={dragHandler}
             className={classes.slider}
           />
         </Box>
         <Box>
-          <Typography>{getTime(songInfo.duration)}</Typography>
+          <Typography>
+            {songInfo.duration ? getTime(songInfo.duration) : "0:00"}
+          </Typography>
         </Box>
       </Grid>
       <Grid container justify="center" alignItems="center">
