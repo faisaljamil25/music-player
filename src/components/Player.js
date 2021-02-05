@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography, Slider, IconButton, Box } from "@material-ui/core";
+import { Grid, Typography, IconButton, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 // import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
@@ -21,27 +21,29 @@ const useStyles = makeStyles((theme) => ({
       width: "15%",
     },
   },
-  slider: {
+  sliderBox: {
     width: "60%",
     [theme.breakpoints.up("sm")]: {
       width: "40%",
     },
   },
+  slider: {
+    width: "100%",
+  },
 }));
 
-const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
+const Player = ({
+  audioRef,
+  isPlaying,
+  setIsPlaying,
+  songInfo,
+  setSongInfo,
+}) => {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-  const [songInfo, setSongInfo] = React.useState({
-    currentTime: 0,
-    duration: 0,
-  });
-  const audioRef = React.useRef(null);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-    audioRef.current.currentTime = newValue;
-    // setSongInfo({ ...songInfo, currentTime: newValue });
+  const dragHandler = (e) => {
+    audioRef.current.currentTime = e.target.value;
+    setSongInfo({ ...songInfo, currentTime: e.target.value });
   };
 
   const playSongHandler = () => {
@@ -51,12 +53,6 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
       audioRef.current.play();
     }
     setIsPlaying(!isPlaying);
-  };
-
-  const timeUpdateHandler = (e) => {
-    const currentTime = e.target.currentTime;
-    const duration = e.target.duration;
-    setSongInfo({ ...songInfo, currentTime: currentTime, duration });
   };
 
   const getTime = (time) => {
@@ -71,13 +67,14 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
         <Box>
           <Typography>{getTime(songInfo.currentTime)}</Typography>
         </Box>
-        <Box ml={3} mr={3} className={classes.slider}>
-          <Slider
+        <Box ml={3} mr={3} className={classes.sliderBox}>
+          <input
+            value={songInfo.currentTime}
+            type="range"
+            max={songInfo.duration || 0}
             min={0}
-            max={songInfo.duration}
-            value={value}
-            onChange={handleChange}
-            aria-labelledby="continuous-slider"
+            onChange={dragHandler}
+            className={classes.slider}
           />
         </Box>
         <Box>
@@ -105,12 +102,6 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
           </IconButton>
         </Box>
       </Grid>
-      <audio
-        onTimeUpdate={timeUpdateHandler}
-        onLoadedMetadata={timeUpdateHandler}
-        ref={audioRef}
-        src={currentSong.audio}
-      ></audio>
     </div>
   );
 };

@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Library = ({ songs, setCurrentSong }) => {
+const Library = ({ songs, setCurrentSong, audioRef, isPlaying }) => {
   const classes = useStyles();
 
   return (
@@ -25,6 +25,8 @@ const Library = ({ songs, setCurrentSong }) => {
           <LibrarySong
             song={song}
             setCurrentSong={setCurrentSong}
+            audioRef={audioRef}
+            isPlaying={isPlaying}
             key={song.id}
           />
         ))}

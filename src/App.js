@@ -13,6 +13,17 @@ function App() {
   const [currentSong, setCurrentSong] = React.useState(songs[0]);
   const [isPlaying, setIsPlaying] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+  const [songInfo, setSongInfo] = React.useState({
+    currentTime: 0,
+    duration: 0,
+  });
+  const audioRef = React.useRef(null);
+
+  const timeUpdateHandler = (e) => {
+    const currentTime = e.target.currentTime;
+    const duration = e.target.duration;
+    setSongInfo({ ...songInfo, currentTime: currentTime, duration });
+  };
 
   return (
     <div className="App">
@@ -21,9 +32,11 @@ function App() {
       <Grid>
         <Song currentSong={currentSong} />
         <Player
-          currentSong={currentSong}
+          audioRef={audioRef}
           isPlaying={isPlaying}
           setIsPlaying={setIsPlaying}
+          songInfo={songInfo}
+          setSongInfo={setSongInfo}
         />
       </Grid>
       <LibraryDrawer
@@ -31,7 +44,15 @@ function App() {
         open={open}
         setOpen={setOpen}
         setCurrentSong={setCurrentSong}
+        audioRef={audioRef}
+        isPlaying={isPlaying}
       />
+      <audio
+        onTimeUpdate={timeUpdateHandler}
+        onLoadedMetadata={timeUpdateHandler}
+        ref={audioRef}
+        src={currentSong.audio}
+      ></audio>
     </div>
   );
 }
