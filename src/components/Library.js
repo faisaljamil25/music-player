@@ -12,7 +12,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Library = ({ songs, setCurrentSong, audioRef, isPlaying }) => {
+const Library = ({
+  songs,
+  currentSong,
+  setCurrentSong,
+  audioRef,
+  isPlaying,
+}) => {
   const classes = useStyles();
 
   return (
@@ -24,6 +30,7 @@ const Library = ({ songs, setCurrentSong, audioRef, isPlaying }) => {
         {songs.map((song) => (
           <LibrarySong
             song={song}
+            currentSong={currentSong}
             setCurrentSong={setCurrentSong}
             audioRef={audioRef}
             isPlaying={isPlaying}

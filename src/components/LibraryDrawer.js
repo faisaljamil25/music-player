@@ -9,6 +9,7 @@ const LibraryDrawer = ({
   songs,
   open,
   setOpen,
+  currentSong,
   setCurrentSong,
   audioRef,
   isPlaying,
@@ -31,6 +32,7 @@ const LibraryDrawer = ({
         <Drawer anchor="left" open={open} onClose={toggleLibrary(false)}>
           <Library
             songs={songs}
+            currentSong={currentSong}
             setCurrentSong={setCurrentSong}
             audioRef={audioRef}
             isPlaying={isPlaying}

@@ -46,6 +46,7 @@ function App() {
         songs={songs}
         open={open}
         setOpen={setOpen}
+        currentSong={currentSong}
         setCurrentSong={setCurrentSong}
         audioRef={audioRef}
         isPlaying={isPlaying}

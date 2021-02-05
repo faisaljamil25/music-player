@@ -32,9 +32,18 @@ const useStyles = makeStyles((theme) => ({
   typography: {
     color: "#323232",
   },
+  activeSong: {
+    backgroundColor: "#F5E9DB",
+  },
 }));
 
-const LibrarySong = ({ song, setCurrentSong, audioRef, isPlaying }) => {
+const LibrarySong = ({
+  song,
+  setCurrentSong,
+  audioRef,
+  isPlaying,
+  currentSong,
+}) => {
   const classes = useStyles();
   const handleSong = () => {
     setCurrentSong(song);
@@ -49,7 +58,12 @@ const LibrarySong = ({ song, setCurrentSong, audioRef, isPlaying }) => {
   };
 
   return (
-    <div className={classes.root} onClick={handleSong}>
+    <div
+      className={`${classes.root} ${
+        song.id === currentSong.id ? classes.activeSong : ""
+      }`}
+      onClick={handleSong}
+    >
       <Box className={classes.songCover}>
         <img
           src={song.cover}
