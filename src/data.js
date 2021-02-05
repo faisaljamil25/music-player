@@ -41,7 +41,7 @@ function chillHop() {
       artist: "Philanthrope, Leavv",
       cover:
         "https://chillhop.com/wp-content/uploads/2020/09/88e7eb711f8c71d87fc102e97cf91e36f692348d-1024x1024.jpg",
-      audio: "https://mp3.chillhop.com/serve.php/?mp3=11770",
+      audio: "https://mp3.chillhop.com/serve.php/?mp3=9923",
       color: ["#478965", "#D49064"],
       id: uuidv4(),
       active: false,
@@ -98,6 +98,17 @@ function chillHop() {
         "https://chillhop.com/wp-content/uploads/2020/08/63d2d2cdabbc5df023603b5f47b2fb97963cb537-1024x1024.jpg",
       audio: "https://mp3.chillhop.com/serve.php/?mp3=8095",
       color: ["#4D5C41", "#BFAB79"],
+      id: uuidv4(),
+      active: false,
+    },
+    {
+      index: 10,
+      name: "Who Knows",
+      artist: "Psalm Trees, Guillaume",
+      cover:
+        "https://chillhop.com/wp-content/uploads/2020/10/371dadcad6dee874bd96515ae5d19b6daef2f408-1024x1024.jpg",
+      audio: "https://mp3.chillhop.com/serve.php/?mp3=10553",
+      color: ["#F4ECE1", "#575933"],
       id: uuidv4(),
       active: false,
     },
