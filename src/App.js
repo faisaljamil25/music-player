@@ -35,8 +35,11 @@ function App() {
           audioRef={audioRef}
           isPlaying={isPlaying}
           setIsPlaying={setIsPlaying}
+          songs={songs}
           songInfo={songInfo}
           setSongInfo={setSongInfo}
+          currentSong={currentSong}
+          setCurrentSong={setCurrentSong}
         />
       </Grid>
       <LibraryDrawer

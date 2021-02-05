@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
   slider: {
     width: "100%",
+    cursor: "pointer",
   },
 }));
 
@@ -36,8 +37,11 @@ const Player = ({
   audioRef,
   isPlaying,
   setIsPlaying,
+  songs,
   songInfo,
   setSongInfo,
+  currentSong,
+  setCurrentSong,
 }) => {
   const classes = useStyles();
 
@@ -59,6 +63,30 @@ const Player = ({
     return (
       Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2)
     );
+  };
+
+  const songController = () => {
+    if (isPlaying) {
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          audioRef.current.play();
+        });
+      }
+    }
+  };
+
+  const skipNext = () => {
+    const nextIndex =
+      currentSong.index % songs.length === 0 ? 1 : currentSong.index + 1;
+    setCurrentSong(songs.find((song) => song.index === nextIndex));
+    songController();
+  };
+  const skipPrevious = () => {
+    const prevIndex =
+      currentSong.index - 1 === 0 ? songs.length : currentSong.index - 1;
+    setCurrentSong(songs.find((song) => song.index === prevIndex));
+    songController();
   };
 
   return (
@@ -83,7 +111,7 @@ const Player = ({
       </Grid>
       <Grid container justify="center" alignItems="center">
         <Box>
-          <IconButton color="inherit">
+          <IconButton color="inherit" onClick={skipPrevious}>
             <SkipPreviousIcon fontSize="large" />
           </IconButton>
         </Box>
@@ -97,7 +125,7 @@ const Player = ({
           </IconButton>
         </Box>
         <Box>
-          <IconButton color="inherit">
+          <IconButton color="inherit" onClick={skipNext}>
             <SkipNextIcon fontSize="large" />
           </IconButton>
         </Box>
