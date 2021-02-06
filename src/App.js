@@ -7,6 +7,9 @@ import LibraryDrawer from "./components/LibraryDrawer";
 import { CssBaseline, Grid } from "@material-ui/core";
 // data
 import data from "./data";
+// theme
+import { ThemeProvider } from "@material-ui/core/styles";
+import { theme } from "./styles/index";
 
 function App() {
   const [songs, setSongs] = React.useState(data());
@@ -27,30 +30,32 @@ function App() {
 
   return (
     <div className="App">
-      <CssBaseline />
-      <Header setOpen={setOpen} />
-      <Grid>
-        <Song currentSong={currentSong} />
-        <Player
-          audioRef={audioRef}
-          isPlaying={isPlaying}
-          setIsPlaying={setIsPlaying}
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Header setOpen={setOpen} />
+        <Grid>
+          <Song currentSong={currentSong} />
+          <Player
+            audioRef={audioRef}
+            isPlaying={isPlaying}
+            setIsPlaying={setIsPlaying}
+            songs={songs}
+            songInfo={songInfo}
+            setSongInfo={setSongInfo}
+            currentSong={currentSong}
+            setCurrentSong={setCurrentSong}
+          />
+        </Grid>
+        <LibraryDrawer
           songs={songs}
-          songInfo={songInfo}
-          setSongInfo={setSongInfo}
+          open={open}
+          setOpen={setOpen}
           currentSong={currentSong}
           setCurrentSong={setCurrentSong}
+          audioRef={audioRef}
+          isPlaying={isPlaying}
         />
-      </Grid>
-      <LibraryDrawer
-        songs={songs}
-        open={open}
-        setOpen={setOpen}
-        currentSong={currentSong}
-        setCurrentSong={setCurrentSong}
-        audioRef={audioRef}
-        isPlaying={isPlaying}
-      />
+      </ThemeProvider>
       <audio
         onTimeUpdate={timeUpdateHandler}
         onLoadedMetadata={timeUpdateHandler}

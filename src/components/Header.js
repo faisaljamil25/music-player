@@ -42,7 +42,7 @@ const Header = ({ setOpen }) => {
     <Box className={classes.root}>
       <Box className={classes.header}>
         <Typography variant="h4" className={classes.title}>
-          Music
+          Waves
         </Typography>
         <Button variant="outlined" onClick={toggleLibrary(true)}>
           Library
