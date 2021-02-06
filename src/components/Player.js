@@ -77,15 +77,17 @@ const Player = ({
   };
 
   const skipNext = () => {
-    const nextIndex =
-      currentSong.index % songs.length === 0 ? 1 : currentSong.index + 1;
-    setCurrentSong(songs.find((song) => song.index === nextIndex));
+    const currentIndex = songs.findIndex((song) => song.id === currentSong.id);
+    setCurrentSong(songs[(currentIndex + 1) % songs.length]);
     songController();
   };
   const skipPrevious = () => {
-    const prevIndex =
-      currentSong.index - 1 === 0 ? songs.length : currentSong.index - 1;
-    setCurrentSong(songs.find((song) => song.index === prevIndex));
+    const currentIndex = songs.findIndex((song) => song.id === currentSong.id);
+    if (currentIndex === 0) {
+      setCurrentSong(songs[songs.length - 1]);
+    } else {
+      setCurrentSong(songs[currentIndex - 1]);
+    }
     songController();
   };
 
@@ -99,7 +101,7 @@ const Player = ({
           <input
             value={songInfo.currentTime}
             type="range"
-            max={songInfo.duration}
+            max={songInfo.duration || 0}
             min={0}
             onChange={dragHandler}
             className={classes.slider}

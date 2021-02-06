@@ -3,7 +3,6 @@ import { v4 as uuidv4 } from "uuid";
 function chillHop() {
   return [
     {
-      index: 1,
       name: "Flashback",
       artist: "Blue Wednesday, Shopan",
       cover:
@@ -14,7 +13,6 @@ function chillHop() {
       active: true,
     },
     {
-      index: 2,
       name: "Rest Until Dark",
       artist: "Sleepy Fish",
       cover:
@@ -25,7 +23,6 @@ function chillHop() {
       active: false,
     },
     {
-      index: 3,
       name: "Hereafter",
       artist: "Makzo",
       cover:
@@ -36,7 +33,6 @@ function chillHop() {
       active: false,
     },
     {
-      index: 4,
       name: "What Was Before",
       artist: "Philanthrope, Leavv",
       cover:
@@ -47,7 +43,6 @@ function chillHop() {
       active: false,
     },
     {
-      index: 5,
       name: "Ocean View",
       artist: "G Mills, Kyle McEvoy",
       cover:
@@ -58,7 +53,6 @@ function chillHop() {
       active: false,
     },
     {
-      index: 6,
       name: "Going Back",
       artist: "Swørn",
       cover:
@@ -69,7 +63,6 @@ function chillHop() {
       active: false,
     },
     {
-      index: 7,
       name: "Canary Forest",
       artist: "Aso, Middle School, Aviino",
       cover:
@@ -80,7 +73,6 @@ function chillHop() {
       active: false,
     },
     {
-      index: 8,
       name: "Sugarless",
       artist: "The Field Tapes, Aviino",
       cover:
@@ -91,7 +83,6 @@ function chillHop() {
       active: false,
     },
     {
-      index: 9,
       name: "Finally Home",
       artist: "Sitting Duck, Hoffy Beats",
       cover:
@@ -102,7 +93,6 @@ function chillHop() {
       active: false,
     },
     {
-      index: 10,
       name: "Who Knows",
       artist: "Psalm Trees, Guillaume",
       cover:
