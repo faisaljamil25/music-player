@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Typography, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import LibraryMusicIcon from "@material-ui/icons/LibraryMusic";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,6 +23,14 @@ const useStyles = makeStyles((theme) => ({
       textAlign: "left",
     },
   },
+  libraryBtn: {
+    border: "3px solid #38393b",
+    borderRadius: 0,
+    "&:hover": {
+      backgroundColor: "#38393b",
+      color: "white",
+    },
+  },
 }));
 
 const Header = ({ setOpen }) => {
@@ -41,10 +50,16 @@ const Header = ({ setOpen }) => {
   return (
     <Box className={classes.root}>
       <Box className={classes.header}>
-        <Typography variant="h4" className={classes.title}>
+        <Typography variant="h4" className={classes.title} color="inherit">
           Waves
         </Typography>
-        <Button variant="outlined" onClick={toggleLibrary(true)}>
+        <Button
+          variant="outlined"
+          onClick={toggleLibrary(true)}
+          startIcon={<LibraryMusicIcon />}
+          size="large"
+          className={classes.libraryBtn}
+        >
           Library
         </Button>
       </Box>

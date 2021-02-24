@@ -45,16 +45,9 @@ const LibrarySong = ({
   currentSong,
 }) => {
   const classes = useStyles();
-  const handleSong = () => {
-    setCurrentSong(song);
-    if (isPlaying) {
-      const playPromise = audioRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.then(() => {
-          audioRef.current.play();
-        });
-      }
-    }
+  const handleSong = async () => {
+    await setCurrentSong(song);
+    if (isPlaying) audioRef.current.play();
   };
 
   return (

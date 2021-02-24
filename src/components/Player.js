@@ -65,30 +65,19 @@ const Player = ({
     );
   };
 
-  const songController = () => {
-    if (isPlaying) {
-      const playPromise = audioRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.then(() => {
-          audioRef.current.play();
-        });
-      }
-    }
-  };
-
-  const skipNext = () => {
+  const skipNext = async () => {
     const currentIndex = songs.findIndex((song) => song.id === currentSong.id);
-    setCurrentSong(songs[(currentIndex + 1) % songs.length]);
-    songController();
+    await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+    if (isPlaying) audioRef.current.play();
   };
-  const skipPrevious = () => {
+  const skipPrevious = async () => {
     const currentIndex = songs.findIndex((song) => song.id === currentSong.id);
     if (currentIndex === 0) {
-      setCurrentSong(songs[songs.length - 1]);
+      await setCurrentSong(songs[songs.length - 1]);
     } else {
-      setCurrentSong(songs[currentIndex - 1]);
+      await setCurrentSong(songs[currentIndex - 1]);
     }
-    songController();
+    if (isPlaying) audioRef.current.play();
   };
 
   return (
