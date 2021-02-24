@@ -10,6 +10,18 @@ import data from "./data";
 // theme
 import { ThemeProvider } from "@material-ui/core/styles";
 import { theme } from "./styles/index";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+  main: {
+    transform: "translate(0,0)",
+    transition: "all 0.3s ease",
+  },
+  transform: {
+    transform: "translate(10%,0)",
+    transition: "all 0.3s ease",
+  },
+});
 
 function App() {
   const [songs, setSongs] = React.useState(data());
@@ -21,6 +33,7 @@ function App() {
     duration: 0,
   });
   const audioRef = React.useRef(null);
+  const classes = useStyles();
 
   const timeUpdateHandler = (e) => {
     const currentTime = e.target.currentTime;
@@ -38,8 +51,8 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Header setOpen={setOpen} />
-        <Grid>
+        <Grid className={open ? classes.transform : classes.main}>
+          <Header setOpen={setOpen} />
           <Song currentSong={currentSong} />
           <Player
             audioRef={audioRef}
