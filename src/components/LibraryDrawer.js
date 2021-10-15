@@ -1,8 +1,8 @@
-import React from "react";
-import Drawer from "@material-ui/core/Drawer";
-import Library from "./Library";
-import { makeStyles } from "@material-ui/core/styles";
-import styles from "../styles/index";
+import React from 'react';
+import Drawer from '@material-ui/core/Drawer';
+import Library from './Library';
+import { makeStyles } from '@material-ui/core/styles';
+import styles from '../styles/index';
 
 const useStyles = makeStyles(styles);
 const LibraryDrawer = ({
@@ -14,11 +14,12 @@ const LibraryDrawer = ({
   audioRef,
   isPlaying,
 }) => {
+  // eslint-disable-next-line
   const classes = useStyles();
   const toggleLibrary = (open) => (event) => {
     if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
     ) {
       return;
     }
@@ -28,8 +29,8 @@ const LibraryDrawer = ({
 
   return (
     <div>
-      <React.Fragment key="left">
-        <Drawer anchor="left" open={open} onClose={toggleLibrary(false)}>
+      <React.Fragment key='left'>
+        <Drawer anchor='left' open={open} onClose={toggleLibrary(false)}>
           <Library
             songs={songs}
             currentSong={currentSong}

@@ -1,29 +1,30 @@
-import React from "react";
+import React from 'react';
 // components
-import Header from "./components/Header";
-import Song from "./components/Song";
-import Player from "./components/Player";
-import LibraryDrawer from "./components/LibraryDrawer";
-import { CssBaseline, Grid } from "@material-ui/core";
+import Header from './components/Header';
+import Song from './components/Song';
+import Player from './components/Player';
+import LibraryDrawer from './components/LibraryDrawer';
+import { CssBaseline, Grid } from '@material-ui/core';
 // data
-import data from "./data";
+import data from './data';
 // theme
-import { ThemeProvider } from "@material-ui/core/styles";
-import { theme } from "./styles/index";
-import { makeStyles } from "@material-ui/core/styles";
+import { ThemeProvider } from '@material-ui/core/styles';
+import { theme } from './styles/index';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   main: {
-    transform: "translate(0,0)",
-    transition: "all 0.3s ease",
+    transform: 'translate(0,0)',
+    transition: 'all 0.3s ease',
   },
   transform: {
-    transform: "translate(10%,0)",
-    transition: "all 0.3s ease",
+    transform: 'translate(10%,0)',
+    transition: 'all 0.3s ease',
   },
 });
 
 function App() {
+  // eslint-disable-next-line
   const [songs, setSongs] = React.useState(data());
   const [currentSong, setCurrentSong] = React.useState(songs[0]);
   const [isPlaying, setIsPlaying] = React.useState(false);
@@ -48,7 +49,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className='App'>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Grid className={open ? classes.transform : classes.main}>
